@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -463,7 +464,6 @@
             text-align: center;
             margin-top: 30px;
             box-shadow: var(--shadow);
-            animation: pulse 2s infinite;
         }
 
         .total-amount {
@@ -487,22 +487,22 @@
             margin-bottom: 15px;
             transition: var(--transition);
             border-left: 4px solid transparent;
+            background: var(--white);
+            box-shadow: var(--shadow);
         }
 
         .stock-item:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
         }
 
         .stock-ok {
-            background: rgba(72, 187, 120, 0.1);
             border-left-color: var(--success);
         }
 
         .stock-low {
-            background: rgba(245, 101, 101, 0.1);
             border-left-color: var(--danger);
-            animation: pulse 2s infinite;
+            background: rgba(245, 101, 101, 0.05);
         }
 
         .stock-info h4 {
@@ -693,6 +693,57 @@
             color: var(--dark);
         }
 
+        /* User Info */
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .family-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .family-code {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(102, 126, 234, 0.1);
+            border-left: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
             body {
@@ -754,57 +805,6 @@
                 gap: 15px;
             }
         }
-
-        /* User Info */
-        .user-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 25px;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .family-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .family-code {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        /* Loading */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(102, 126, 234, 0.1);
-            border-left: 4px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
@@ -817,11 +817,11 @@
         </div>
         
         <div id="loginForm">
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 15px;">
                 <label><i class="fas fa-envelope"></i> Email</label>
                 <input type="email" id="loginEmail" class="form-input" placeholder="seu@email.com">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 20px;">
                 <label><i class="fas fa-lock"></i> Senha</label>
                 <input type="password" id="loginPassword" class="form-input" placeholder="********">
             </div>
@@ -834,19 +834,19 @@
         </div>
         
         <div id="registerForm" style="display: none;">
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 15px;">
                 <label><i class="fas fa-home"></i> Nome da Família</label>
                 <input type="text" id="familyName" class="form-input" placeholder="Família Silva">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 15px;">
                 <label><i class="fas fa-envelope"></i> Email</label>
                 <input type="email" id="registerEmail" class="form-input" placeholder="familia@email.com">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 15px;">
                 <label><i class="fas fa-lock"></i> Senha</label>
                 <input type="password" id="registerPassword" class="form-input" placeholder="********">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 20px;">
                 <label><i class="fas fa-key"></i> Código da Família (opcional)</label>
                 <input type="text" id="existingFamilyCode" class="form-input" placeholder="Deixe vazio para criar nova família">
             </div>
@@ -890,7 +890,7 @@
                 <div class="tabs">
                     <button class="tab active" onclick="showTab('shopping')">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>Lista de Compras</span>
+                        <span>Lista</span>
                     </button>
                     <button class="tab" onclick="showTab('history')">
                         <i class="fas fa-history"></i>
@@ -964,16 +964,13 @@
                 <!-- Botões de Ação -->
                 <div style="display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;">
                     <button class="btn btn-success" onclick="loadPreviousMonth()">
-                        <i class="fas fa-clipboard-list"></i> Carregar Lista Anterior
+                        <i class="fas fa-clipboard-list"></i> Lista Anterior
                     </button>
                     <button class="btn btn-warning" onclick="saveCurrentList()">
                         <i class="fas fa-save"></i> Salvar Lista
                     </button>
-                    <button class="btn btn-info" onclick="generateShoppingRoute()">
-                        <i class="fas fa-route"></i> Roteiro de Compras
-                    </button>
                     <button class="btn btn-secondary" onclick="clearList()">
-                        <i class="fas fa-trash"></i> Limpar Lista
+                        <i class="fas fa-trash"></i> Limpar
                     </button>
                 </div>
 
@@ -1004,9 +1001,6 @@
             <div id="history" class="tab-content">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                     <h2><i class="fas fa-history"></i> Histórico de Compras</h2>
-                    <button class="btn btn-info" onclick="exportHistory()">
-                        <i class="fas fa-download"></i> Exportar
-                    </button>
                 </div>
                 <div id="historyList">
                     <div class="empty-state">
@@ -1040,7 +1034,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary" onclick="addStockItem()">
-                        <i class="fas fa-plus"></i> Adicionar ao Estoque
+                        <i class="fas fa-plus"></i> Adicionar
                     </button>
                 </div>
 
@@ -1086,9 +1080,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
 
     <script>
-        // [MESMO JAVASCRIPT DO CÓDIGO ANTERIOR - Cole aqui toda a lógica]
-        
-        // Configuração do Firebase (VOCÊ DEVE SUBSTITUIR PELOS SEUS VALORES)
+        // CONFIGURAÇÃO DO FIREBASE - SUBSTITUA PELOS SEUS VALORES
         const firebaseConfig = {
             apiKey: "AIzaSyAFkjkh9GEdQlrsxZPGU3mR3KYpjRBhYAk",
             authDomain: "smartlist-familia.firebaseapp.com",
@@ -1103,6 +1095,7 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        // Variáveis globais
         let currentUser = null;
         let familyCode = null;
         let familyData = {};
@@ -1112,10 +1105,234 @@
         let priceHistory = {};
         let allItems = [];
 
-        // [Cole todas as funções JavaScript do código anterior aqui]
-        // Todas as funções: showTab, addItem, updateShoppingList, etc.
+        // Funções de autenticação
+        function showRegister() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        }
 
-        // Função exemplo atualizada com novo design
+        function showLogin() {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+
+        async function register() {
+            const familyName = document.getElementById('familyName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const existingCode = document.getElementById('existingFamilyCode').value.trim();
+
+            if (!familyName || !email || !password) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                let familyCodeToUse = existingCode;
+                
+                if (!existingCode) {
+                    familyCodeToUse = generateFamilyCode();
+                    await db.collection('families').doc(familyCodeToUse).set({
+                        name: familyName,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        members: [user.uid],
+                        currentList: [],
+                        savedLists: [],
+                        stockItems: [],
+                        priceHistory: {},
+                        allItems: []
+                    });
+                } else {
+                    const familyRef = db.collection('families').doc(existingCode);
+                    const familyDoc = await familyRef.get();
+                    
+                    if (!familyDoc.exists) {
+                        alert('Código da família não encontrado!');
+                        return;
+                    }
+                    
+                    await familyRef.update({
+                        members: firebase.firestore.FieldValue.arrayUnion(user.uid)
+                    });
+                }
+
+                await db.collection('users').doc(user.uid).set({
+                    email: email,
+                    familyCode: familyCodeToUse,
+                    joinedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert('Conta criada com sucesso!');
+                
+            } catch (error) {
+                alert('Erro ao criar conta: ' + error.message);
+            }
+        }
+
+        async function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                alert('Preencha email e senha!');
+                return;
+            }
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                alert('Erro no login: ' + error.message);
+            }
+        }
+
+        function logout() {
+            auth.signOut();
+        }
+
+        function generateFamilyCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 6; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Monitorar estado de autenticação
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                currentUser = user;
+                
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                if (userDoc.exists) {
+                    familyCode = userDoc.data().familyCode;
+                    
+                    const familyDoc = await db.collection('families').doc(familyCode).get();
+                    if (familyDoc.exists) {
+                        familyData = familyDoc.data();
+                        
+                        document.getElementById('familyNameDisplay').textContent = familyData.name;
+                        document.getElementById('familyCodeDisplay').textContent = familyCode;
+                        
+                        loadFamilyData();
+                        
+                        db.collection('families').doc(familyCode).onSnapshot((doc) => {
+                            if (doc.exists) {
+                                familyData = doc.data();
+                                loadFamilyData();
+                            }
+                        });
+                    }
+                }
+                
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('appScreen').style.display = 'block';
+                
+            } else {
+                currentUser = null;
+                familyCode = null;
+                document.getElementById('loginScreen').style.display = 'block';
+                document.getElementById('appScreen').style.display = 'none';
+            }
+        });
+
+        // Funções da aplicação
+        function loadFamilyData() {
+            if (!familyData) return;
+            
+            currentList = familyData.currentList || [];
+            savedLists = familyData.savedLists || [];
+            stockItems = familyData.stockItems || [];
+            priceHistory = familyData.priceHistory || {};
+            allItems = familyData.allItems || [];
+            
+            updateShoppingList();
+            updateTotal();
+        }
+
+        async function saveFamilyData() {
+            if (!familyCode) return;
+            
+            try {
+                await db.collection('families').doc(familyCode).update({
+                    currentList: currentList,
+                    savedLists: savedLists,
+                    stockItems: stockItems,
+                    priceHistory: priceHistory,
+                    allItems: allItems,
+                    lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            } catch (error) {
+                console.error('Erro ao salvar:', error);
+            }
+        }
+
+        // Navegação por abas
+        function showTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+            
+            if (tabName === 'history') loadHistory();
+            if (tabName === 'stock') loadStock();
+            if (tabName === 'reports') loadReports();
+        }
+
+        // Função para adicionar item
+        async function addItem() {
+            const name = document.getElementById('itemName').value.trim();
+            const price = parseFloat(document.getElementById('itemPrice').value) || 0;
+            const quantity = parseInt(document.getElementById('itemQuantity').value) || 1;
+            const category = document.getElementById('itemCategory').value;
+
+            if (!name) {
+                alert('Por favor, digite o nome do produto!');
+                return;
+            }
+
+            const item = {
+                id: Date.now(),
+                name: name,
+                price: price,
+                quantity: quantity,
+                category: category,
+                checked: false,
+                addedAt: new Date().toISOString(),
+                addedBy: currentUser ? currentUser.email : 'Anônimo'
+            };
+
+            currentList.push(item);
+            
+            if (!priceHistory[name]) {
+                priceHistory[name] = [];
+            }
+            if (price > 0) {
+                priceHistory[name].push({
+                    price: price,
+                    date: new Date().toLocaleDateString(),
+                    location: 'Manual',
+                    addedBy: currentUser ? currentUser.email : 'Anônimo'
+                });
+            }
+
+            if (!allItems.find(i => i.name.toLowerCase() === name.toLowerCase())) {
+                allItems.push({name: name, category: category});
+            }
+            
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemPrice').value = '';
+            document.getElementById('itemQuantity').value = '1';
+            
+            updateShoppingList();
+            updateTotal();
+            await saveFamilyData();
+        }
+
         function updateShoppingList() {
             const container = document.getElementById('shoppingItems');
             
@@ -1173,7 +1390,6 @@
             `).join('');
         }
 
-        // Função para obter ícone da categoria
         function getCategoryIcon(category) {
             const icons = {
                 'alimentacao': '🍎',
@@ -1190,7 +1406,6 @@
             return icons[category] || '📦';
         }
 
-        // Função para obter nome da categoria
         function getCategoryName(category) {
             const names = {
                 'alimentacao': 'Alimentação',
@@ -1207,8 +1422,756 @@
             return names[category] || 'Outros';
         }
 
-        // [ADICIONE TODAS AS OUTRAS FUNÇÕES DO JAVASCRIPT ANTERIOR AQUI]
+        async function removeItem(id) {
+            if (confirm('Deseja remover este item?')) {
+                currentList = currentList.filter(item => item.id !== id);
+                updateShoppingList();
+                updateTotal();
+                await saveFamilyData();
+            }
+        }
 
+        async function toggleItem(id) {
+            const item = currentList.find(item => item.id === id);
+            if (item) {
+                item.checked = !item.checked;
+                item.checkedBy = currentUser ? currentUser.email : 'Anônimo';
+                item.checkedAt = new Date().toISOString();
+                updateShoppingList();
+                updateTotal();
+                await saveFamilyData();
+            }
+        }
+
+        async function editItem(id) {
+            const item = currentList.find(item => item.id === id);
+            if (item) {
+                const newName = prompt('Nome do produto:', item.name);
+                if (newName) item.name = newName.trim();
+                
+                const newPrice = prompt('Preço:', item.price);
+                if (newPrice !== null) item.price = parseFloat(newPrice) || 0;
+                
+                const newQuantity = prompt('Quantidade:', item.quantity);
+                if (newQuantity !== null) item.quantity = parseInt(newQuantity) || 1;
+                
+                updateShoppingList();
+                updateTotal();
+                await saveFamilyData();
+            }
+        }
+
+        function updateTotal() {
+            const total = currentList.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalItems = currentList.reduce((sum, item) => sum + item.quantity, 0);
+            
+            document.getElementById('totalAmount').textContent = `R$ ${total.toFixed(2)}`;
+            document.getElementById('totalItems').textContent = totalItems;
+        }
+
+        async function saveCurrentList() {
+            if (currentList.length === 0) {
+                alert('Lista vazia! Adicione itens antes de salvar.');
+                return;
+            }
+
+            const listName = prompt('Nome para esta lista:', `Compra ${new Date().toLocaleDateString()}`);
+            if (!listName) return;
+
+            const savedList = {
+                id: Date.now(),
+                name: listName,
+                date: new Date().toISOString(),
+                items: [...currentList],
+                total: currentList.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                savedBy: currentUser ? currentUser.email : 'Anônimo'
+            };
+
+            savedLists.push(savedList);
+            await saveFamilyData();
+            
+            alert('Lista salva com sucesso!');
+        }
+
+        async function loadPreviousMonth() {
+            if (savedLists.length === 0) {
+                alert('Nenhuma lista salva encontrada!');
+                return;
+            }
+
+            const lastList = savedLists[savedLists.length - 1];
+            
+            if (confirm(`Carregar lista "${lastList.name}" de ${new Date(lastList.date).toLocaleDateString()}?`)) {
+                currentList = lastList.items.map(item => ({
+                    ...item,
+                    id: Date.now() + Math.random(),
+                    checked: false,
+                    price: 0
+                }));
+                
+                updateShoppingList();
+                updateTotal();
+                await saveFamilyData();
+                alert('Lista carregada! Agora você pode atualizar os preços.');
+            }
+        }
+
+        async function clearList() {
+            if (confirm('Deseja limpar toda a lista atual?')) {
+                currentList = [];
+                updateShoppingList();
+                updateTotal();
+                await saveFamilyData();
+            }
+        }
+
+        // Busca e sugestões
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const query = e.target.value.toLowerCase().trim();
+                    const suggestions = document.getElementById('suggestions');
+                    
+                    if (query.length === 0) {
+                        suggestions.style.display = 'none';
+                        return;
+                    }
+
+                    const matches = allItems.filter(item => 
+                        item.name.toLowerCase().includes(query)
+                    ).slice(0, 5);
+
+                    if (matches.length > 0) {
+                        suggestions.innerHTML = matches.map(item => `
+                            <div class="suggestion-item" onclick="selectSuggestion('${item.name}', '${item.category}')">
+                                ${item.name} <small>(${getCategoryName(item.category)})</small>
+                            </div>
+                        `).join('');
+                        suggestions.style.display = 'block';
+                    } else {
+                        suggestions.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        function selectSuggestion(name, category) {
+            document.getElementById('itemName').value = name;
+            document.getElementById('itemCategory').value = category;
+            document.getElementById('suggestions').style.display = 'none';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('itemPrice').focus();
+        }
+
+        // Fechar sugestões ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                const suggestions = document.getElementById('suggestions');
+                if (suggestions) {
+                    suggestions.style.display = 'none';
+                }
+            }
+        });
+
+        // Histórico de preços
+        function showPriceHistory(itemName) {
+            const history = priceHistory[itemName] || [];
+            const modal = document.getElementById('priceHistoryModal');
+            const content = document.getElementById('priceHistoryContent');
+            
+            document.getElementById('modalTitle').innerHTML = `<i class="fas fa-chart-line"></i> Histórico de Preços - ${itemName}`;
+            
+            if (history.length === 0) {
+                content.innerHTML = '<p>Nenhum histórico de preços disponível.</p>';
+            } else {
+                content.innerHTML = `
+                    <div class="price-history">
+                        ${history.map(entry => `
+                            <div class="price-entry">
+                                <span class="price-value">R$ ${entry.price.toFixed(2)}</span>
+                                <span class="price-date">${entry.date} - ${entry.location}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closePriceHistory() {
+            document.getElementById('priceHistoryModal').style.display = 'none';
+        }
+
+        // Estoque
+        async function addStockItem() {
+            const name = document.getElementById('stockItem').value.trim();
+            const current = parseInt(document.getElementById('stockCurrent').value) || 0;
+            const min = parseInt(document.getElementById('stockMin').value) || 1;
+
+            if (!name) {
+                alert('Digite o nome do produto!');
+                return;
+            }
+
+            const existing = stockItems.find(item => item.name.toLowerCase() === name.toLowerCase());
+            
+            if (existing) {
+                existing.current = current;
+                existing.min = min;
+                existing.lastUpdated = new Date().toISOString();
+                existing.updatedBy = currentUser ? currentUser.email : 'Anônimo';
+            } else {
+                stockItems.push({
+                    id: Date.now(),
+                    name: name,
+                    current: current,
+                    min: min,
+                    lastUpdated: new Date().toISOString(),
+                    createdBy: currentUser ? currentUser.email : 'Anônimo'
+                });
+            }
+
+            document.getElementById('stockItem').value = '';
+            document.getElementById('stockCurrent').value = '0';
+            document.getElementById('stockMin').value = '1';
+            
+            loadStock();
+            await saveFamilyData();
+        }
+
+        function loadStock() {
+            const container = document.getElementById('stockList');
+            
+            if (stockItems.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-boxes"></i>
+                        <h3>Estoque Vazio</h3>
+                        <p>Adicione itens para controlar seu estoque.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = stockItems.map(item => `
+                <div class="stock-item ${item.current <= item.min ? 'stock-low' : 'stock-ok'}">
+                    <div class="stock-info">
+                        <h4>${item.name}</h4>
+                        <div class="stock-quantity">
+                            Atual: ${item.current} | Mínimo: ${item.min}
+                            ${item.current <= item.min ? ' ⚠️ PRECISA COMPRAR' : ' ✅ OK'}
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn btn-warning btn-icon" onclick="updateStock(${item.id})" title="Atualizar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-icon" onclick="removeFromStock(${item.id})" title="Remover">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        ${item.current <= item.min ? 
+                            `<button class="btn btn-primary btn-icon" onclick="addToShoppingList('${item.name}')" title="Adicionar à lista">
+                                <i class="fas fa-plus"></i>
+                            </button>` 
+                            : ''
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function updateStock(id) {
+            const item = stockItems.find(item => item.id === id);
+            if (item) {
+                const newCurrent = prompt('Quantidade atual:', item.current);
+                if (newCurrent !== null) {
+                    item.current = parseInt(newCurrent) || 0;
+                    item.lastUpdated = new Date().toISOString();
+                    item.updatedBy = currentUser ? currentUser.email : 'Anônimo';
+                    loadStock();
+                    await saveFamilyData();
+                }
+            }
+        }
+
+        async function removeFromStock(id) {
+            if (confirm('Remover este item do estoque?')) {
+                stockItems = stockItems.filter(item => item.id !== id);
+                loadStock();
+                await saveFamilyData();
+            }
+        }
+
+        function addToShoppingList(itemName) {
+            document.getElementById('itemName').value = itemName;
+            showTab('shopping');
+            document.querySelector('[onclick="showTab(\'shopping\')"]').click();
+            document.getElementById('itemPrice').focus();
+        }
+
+        async function moveToStock(itemName, quantity) {
+            const existing = stockItems.find(item => item.name.toLowerCase() === itemName.toLowerCase());
+            
+            if (existing) {
+                existing.current += quantity;
+                existing.lastUpdated = new Date().toISOString();
+                existing.updatedBy = currentUser ? currentUser.email : 'Anônimo';
+            } else {
+                const min = parseInt(prompt('Estoque mínimo para este item:', '1')) || 1;
+                stockItems.push({
+                    id: Date.now(),
+                    name: itemName,
+                    current: quantity,
+                    min: min,
+                    lastUpdated: new Date().toISOString(),
+                    createdBy: currentUser ? currentUser.email : 'Anônimo'
+                });
+            }
+
+            await saveFamilyData();
+            alert(`${itemName} adicionado ao estoque!`);
+        }
+
+        // Histórico
+        function loadHistory() {
+            const container = document.getElementById('historyList');
+            
+            if (savedLists.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i>
+                        <h3>Nenhuma Compra Salva</h3>
+                        <p>As listas que você salvar aparecerão aqui.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = savedLists.map(list => `
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">${list.name}</h3>
+                            <p style="color: var(--gray); font-size: 14px;">
+                                <i class="fas fa-calendar"></i> ${new Date(list.date).toLocaleDateString()}
+                                ${list.savedBy ? `• por ${list.savedBy}` : ''}
+                            </p>
+                        </div>
+                        <div>
+                            <span style="color: var(--success); font-weight: 700; font-size: 1.2em;">
+                                R$ ${list.total.toFixed(2)}
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <button class="btn btn-primary" onclick="loadHistoryList(${list.id})">
+                            <i class="fas fa-download"></i> Carregar Lista
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteHistoryList(${list.id})">
+                            <i class="fas fa-trash"></i> Excluir
+                        </button>
+                    </div>
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; color: var(--primary); font-weight: 500;">
+                            <i class="fas fa-list"></i> Ver ${list.items.length} itens
+                        </summary>
+                        <div style="margin-top: 15px; max-height: 200px; overflow-y: auto;">
+                            ${list.items.map(item => `
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee;">
+                                    <span>
+                                        ${getCategoryIcon(item.category)} ${item.name} 
+                                        <small>(x${item.quantity})</small>
+                                    </span>
+                                    <span style="font-weight: 600; color: var(--success);">
+                                        R$ ${(item.price * item.quantity).toFixed(2)}
+                                    </span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </details>
+                </div>
+            `).join('');
+        }
+
+        async function loadHistoryList(id) {
+            const list = savedLists.find(list => list.id === id);
+            if (list && confirm(`Carregar lista "${list.name}"?`)) {
+                currentList = list.items.map(item => ({
+                    ...item,
+                    id: Date.now() + Math.random(),
+                    checked: false
+                }));
+                
+                showTab('shopping');
+                document.querySelector('[onclick="showTab(\'shopping\')"]').click();
+                updateShoppingList();
+                updateTotal();
+                await saveFamilyData();
+                alert('Lista carregada com sucesso!');
+            }
+        }
+
+        async function deleteHistoryList(id) {
+            if (confirm('Excluir esta lista do histórico?')) {
+                savedLists = savedLists.filter(list => list.id !== id);
+                loadHistory();
+                await saveFamilyData();
+            }
+        }
+
+        // Relatórios
+        function loadReports() {
+            const container = document.getElementById('reportsContent');
+            
+            if (savedLists.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Sem Dados Suficientes</h3>
+                        <p>Use o sistema para gerar relatórios automáticos.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const totalSpent = savedLists.reduce((sum, list) => sum + list.total, 0);
+            const avgSpent = totalSpent / savedLists.length;
+            const totalShopping = savedLists.length;
+            
+            // Itens mais comprados
+            const itemFreq = {};
+            savedLists.forEach(list => {
+                list.items.forEach(item => {
+                    itemFreq[item.name] = (itemFreq[item.name] || 0) + item.quantity;
+                });
+            });
+            
+            const topItems = Object.entries(itemFreq)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 10);
+
+            // Categorias mais compradas
+            const categoryFreq = {};
+            savedLists.forEach(list => {
+                list.items.forEach(item => {
+                    categoryFreq[item.category] = (categoryFreq[item.category] || 0) + item.quantity;
+                });
+            });
+
+            const topCategories = Object.entries(categoryFreq)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 5);
+
+            // Gastos por mês
+            const monthlySpending = {};
+            savedLists.forEach(list => {
+                const month = new Date(list.date).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+                monthlySpending[month] = (monthlySpending[month] || 0) + list.total;
+            });
+
+            container.innerHTML = `
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign stat-icon"></i>
+                        <div class="stat-value">R$ ${totalSpent.toFixed(2)}</div>
+                        <div class="stat-label">Total Gasto</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line stat-icon"></i>
+                        <div class="stat-value">R$ ${avgSpent.toFixed(2)}</div>
+                        <div class="stat-label">Média por Compra</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-bag stat-icon"></i>
+                        <div class="stat-value">${totalShopping}</div>
+                        <div class="stat-label">Total de Compras</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-alt stat-icon"></i>
+                        <div class="stat-value">${Object.keys(monthlySpending).length}</div>
+                        <div class="stat-label">Meses Ativos</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-trophy"></i> Top 10 Produtos Mais Comprados
+                    </h3>
+                    ${topItems.map((item, index) => `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee;">
+                            <span style="display: flex; align-items: center; gap: 10px;">
+                                <span style="background: var(--primary); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">
+                                    ${index + 1}
+                                </span>
+                                ${item[0]}
+                            </span>
+                            <span style="font-weight: 600; color: var(--info);">${item[1]} unidades</span>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-list"></i> Categorias Mais Compradas
+                    </h3>
+                    ${topCategories.map((category, index) => `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee;">
+                            <span>
+                                ${getCategoryIcon(category[0])} ${getCategoryName(category[0])}
+                            </span>
+                            <span style="font-weight: 600; color: var(--success);">${category[1]} itens</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-calendar-check"></i> Gastos Mensais
+                    </h3>
+                    ${Object.entries(monthlySpending).map(([month, total]) => `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee;">
+                            <span style="text-transform: capitalize;">${month}</span>
+                            <span style="font-weight: 700; color: var(--success); font-size: 1.1em;">R$ ${total.toFixed(2)}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: var(--warning); margin-bottom: 20px;">
+                        <i class="fas fa-exclamation-triangle"></i> Itens em Estoque Baixo
+                    </h3>
+                    ${stockItems.filter(item => item.current <= item.min).length > 0 ? 
+                        stockItems.filter(item => item.current <= item.min).map(item => `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; color: var(--danger);">
+                                <span>
+                                    <i class="fas fa-exclamation-circle"></i> ${item.name}
+                                </span>
+                                <span>Atual: ${item.current} | Mín: ${item.min}</span>
+                            </div>
+                        `).join('') 
+                        : '<p style="color: var(--success); text-align: center; padding: 20px;"><i class="fas fa-check-circle"></i> Todos os itens estão com estoque adequado!</p>'
+                    }
+                </div>
+            `;
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                const itemNameInput = document.getElementById('itemName');
+                const itemPriceInput = document.getElementById('itemPrice');
+                const itemQuantityInput = document.getElementById('itemQuantity');
+                
+                if (itemNameInput && e.key === 'Enter' && e.target === itemNameInput) {
+                    itemPriceInput.focus();
+                }
+                if (itemPriceInput && e.key === 'Enter' && e.target === itemPriceInput) {
+                    itemQuantityInput.focus();
+                }
+                if (itemQuantityInput && e.key === 'Enter' && e.target === itemQuantityInput) {
+                    addItem();
+                }
+            });
+
+            // Busca com sugestões
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const query = e.target.value.toLowerCase().trim();
+                    const suggestions = document.getElementById('suggestions');
+                    
+                    if (query.length === 0) {
+                        suggestions.style.display = 'none';
+                        return;
+                    }
+
+                    const matches = allItems.filter(item => 
+                        item.name.toLowerCase().includes(query)
+                    ).slice(0, 8);
+
+                    if (matches.length > 0) {
+                        suggestions.innerHTML = matches.map(item => `
+                            <div class="suggestion-item" onclick="selectSuggestion('${item.name.replace(/'/g, "\\'")}', '${item.category}')">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span>${getCategoryIcon(item.category)} ${item.name}</span>
+                                    <small style="color: var(--gray);">${getCategoryName(item.category)}</small>
+                                </div>
+                            </div>
+                        `).join('');
+                        suggestions.style.display = 'block';
+                    } else {
+                        suggestions.style.display = 'none';
+                    }
+                });
+            }
+
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(e) {
+                const modal = document.getElementById('priceHistoryModal');
+                if (e.target === modal) {
+                    closePriceHistory();
+                }
+            });
+
+            // Inicializar dados
+            updateShoppingList();
+            updateTotal();
+        });
+
+        // Funções auxiliares
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Função para exportar dados (futura implementação)
+        function exportData() {
+            const data = {
+                familyCode: familyCode,
+                currentList: currentList,
+                savedLists: savedLists,
+                stockItems: stockItems,
+                priceHistory: priceHistory,
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `smartlist-backup-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Função para gerar roteiro otimizado (exemplo simples)
+        function generateShoppingRoute() {
+            if (currentList.length === 0) {
+                alert('Adicione itens à lista primeiro!');
+                return;
+            }
+
+            const categoryOrder = {
+                'frutas': 1,
+                'verduras': 2,
+                'alimentacao': 3,
+                'carnes': 4,
+                'congelados': 5,
+                'bebidas': 6,
+                'padaria': 7,
+                'limpeza': 8,
+                'higiene': 9,
+                'outros': 10
+            };
+
+            const sortedList = [...currentList].sort((a, b) => {
+                return (categoryOrder[a.category] || 10) - (categoryOrder[b.category] || 10);
+            });
+
+            const modal = document.getElementById('priceHistoryModal');
+            const content = document.getElementById('priceHistoryContent');
+            const title = document.getElementById('modalTitle');
+            
+            title.innerHTML = '<i class="fas fa-route"></i> Roteiro Otimizado de Compras';
+            
+            content.innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <p style="color: var(--gray); margin-bottom: 15px;">
+                        <i class="fas fa-info-circle"></i> 
+                        Ordem sugerida para otimizar seu tempo no supermercado:
+                    </p>
+                </div>
+                ${sortedList.map((item, index) => `
+                    <div style="display: flex; align-items: center; padding: 15px; margin-bottom: 10px; background: ${index % 2 === 0 ? '#f8f9fa' : 'white'}; border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-right: 15px; font-size: 14px;">
+                            ${index + 1}
+                        </span>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; margin-bottom: 3px;">${item.name}</div>
+                            <div style="font-size: 14px; color: var(--gray);">
+                                ${getCategoryIcon(item.category)} ${getCategoryName(item.category)} • Qtd: ${item.quantity}
+                                ${item.price > 0 ? ` • R$ ${(item.price * item.quantity).toFixed(2)}` : ''}
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <input type="checkbox" style="transform: scale(1.5);" ${item.checked ? 'checked' : ''} 
+                                   onchange="toggleItem(${item.id})">
+                        </div>
+                    </div>
+                `).join('')}
+                <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, var(--success), #38a169); color: white; border-radius: 10px; text-align: center;">
+                    <h4 style="margin-bottom: 5px;">Total Estimado</h4>
+                    <div style="font-size: 1.8em; font-weight: 800;">
+                        R$ ${currentList.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Notificações (para implementação futura com service workers)
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--${type});
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: var(--shadow);
+                z-index: 2000;
+                animation: slideUp 0.3s ease-out;
+                max-width: 300px;
+            `;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}-circle"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Função para sincronizar dados offline (PWA ready)
+        function syncOfflineData() {
+            // Implementação futura para PWA
+            console.log('Sincronização offline implementada em versão futura');
+        }
+
+        // Inicialização do Service Worker (para cache offline)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Implementação futura do service worker
+                console.log('Service Worker ready for implementation');
+            });
+        }
+
+        console.log('🛒 SmartList carregado com sucesso!');
+        console.log('📱 App otimizado para mobile e desktop');
+        console.log('🔄 Sincronização em tempo real ativa');
     </script>
 </body>
 </html>
